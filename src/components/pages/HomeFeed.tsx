@@ -25,6 +25,17 @@ export function HomeFeed() {
     }
   }, [sessionReady])
 
+  async function handleCopyClick() {
+    if (!session) return
+    const textarea = document.createElement('textarea')
+    textarea.value = session.address
+    document.body.appendChild(textarea)
+    textarea.select()
+    document.execCommand('copy')
+    document.body.removeChild(textarea)
+    alert('Address copied to clipboard!')
+  }
+
   return (
     <div>
       <div>
@@ -32,7 +43,7 @@ export function HomeFeed() {
           <h2>
             Logged in as{' '}
             {session && (
-              <span>
+              <span onClick={handleCopyClick} style={{ cursor: 'pointer' }}>
                 {session.address.slice(0, 6)}..{session.address.slice(-4)}
               </span>
             )}
