@@ -4,7 +4,7 @@ import { useLocation } from 'wouter'
 import { useSession } from '../../hooks/session'
 
 export function HomeFeed() {
-  const session = useSession()
+  const { session, sessionReady, signOut } = useSession()
   const [, setLocation] = useLocation()
   let data = [
     {
@@ -20,13 +20,25 @@ export function HomeFeed() {
   ]
 
   useEffect(() => {
-    if (!session.user) {
+    if (sessionReady && !session) {
       setLocation('/login')
     }
-  })
+  }, [sessionReady])
 
   return (
     <div>
+      <div>
+        <div>
+          <h2>
+            Logged in as{' '}
+            {session && (
+              <span>
+                {session.address.slice(0, 6)}..{session.address.slice(-4)}
+              </span>
+            )}
+          </h2>
+        </div>
+      </div>
       <h1>Home</h1>
       <div className="CauseList">
         {data.map((post) => (
@@ -39,7 +51,7 @@ export function HomeFeed() {
       <div>
         <button
           onClick={() => {
-            session.signOut()
+            signOut()
             setLocation('/login')
           }}
         >

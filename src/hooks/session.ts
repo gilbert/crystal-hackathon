@@ -1,27 +1,20 @@
-import { useState } from 'react'
-
-type User = {
-  address: string
-}
-let _user: User | null = localStorage.getItem('user')
-  ? JSON.parse(localStorage.getItem('user')!)
-  : null
+import { useEnokiFlow } from '@mysten/enoki/react'
+import { useStore } from '@nanostores/react'
 
 export function useSession() {
-  const [user, setUser] = useState<User | null>(_user)
-  const session = {
-    user,
-    signIn(address: string) {
-      _user = { address }
-      setUser(_user)
-      localStorage.setItem('user', JSON.stringify(_user))
-      session.user = user
-    },
+  const enokiFlow = useEnokiFlow()
+  const user = useStore(enokiFlow.$zkLoginState)
+  const session = useStore(enokiFlow.$zkLoginSession)
+  const sessionHandle = {
+    sessionReady: session.initialized,
+    session: user.address &&
+      session.value && {
+        ...session.value,
+        address: user.address,
+      },
     signOut() {
-      _user = null
-      setUser(null)
-      localStorage.removeItem('user')
+      enokiFlow.logout()
     },
   }
-  return session
+  return sessionHandle
 }

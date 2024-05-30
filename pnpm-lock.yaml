@@ -21,6 +21,9 @@ dependencies:
   '@mysten/zklogin':
     specifier: ^0.7.3
     version: 0.7.3(svelte@4.2.17)(typescript@5.4.5)
+  '@nanostores/react':
+    specifier: ^0.7.2
+    version: 0.7.2(nanostores@0.9.5)(react@18.3.1)
   '@tanstack/react-query':
     specifier: ^5.40.0
     version: 5.40.0(react@18.3.1)
