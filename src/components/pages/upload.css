@@ -4,39 +4,35 @@
   align-items: center;
   justify-content: center;
   height: 100vh;
-  width: 80vh; /* Adjust based on your header and nav bar width */
+  width: 700px;
   background-color: #ffffff;
   padding: 20px;
   box-sizing: border-box;
 }
 
 .cause {
-  font-size: 48px;
-  margin-top: 320px;
-  margin-bottom: 80px;
-  margin-right: 20px;
+  font-size: 36px; /* Adjusted font size to fit within the new width */
+  margin-top: 20px; /* Adjusted margins to fit within the new width */
+  margin-bottom: 20px; 
+  margin-right: 0; /* Centered text, so no margin-right */
   font-weight: bold;
   text-align: center;
   color: black;
-  width:auto;
+  width: 100%;
 }
 
 .image-container {
   display: flex;
-  justify-content: space-around;
-  gap: 70px; /* Add space between images */
+  flex-direction: column; /* Stack images vertically to fit within 700px */
+  align-items: center;
+  gap: 20px; /* Reduced gap to fit within the new width */
   width: 100%;
-  width: 100%; /* Adjust based on your header and nav bar width */
-  max-width: 1500px;
-  max-width: 600px;
-  /* object-fit: cover; */
-
-  /* margin-bottom: 400px; */
 }
 
 .cause_image {
-  width: 310px;
-  height: 310px;
+  width: 90%; /* Adjusted width to fit within the new layout */
+  height: auto; /* Maintain aspect ratio */
+  max-width: 300px; /* Added max-width to constrain the image size */
   border-radius: 10px;
   cursor: pointer;
   transition: transform 0.3s;
@@ -50,6 +46,7 @@
 .image-overlay {
   position: relative;
   display: inline-block;
+  width: 100%; /* Ensure the overlay matches the image size */
 }
 
 .overlay-text {
@@ -59,8 +56,8 @@
   transform: translate(-50%, -50%);
   background-color: rgba(0, 0, 0, 0.5);
   color: white;
-  font-size: 35px;
-  padding: 40px;
+  font-size: 24px; /* Adjusted font size to fit within the new width */
+  padding: 20px; /* Adjusted padding to fit within the new width */
   opacity: 0;
   transition: opacity 0.3s ease;
 }
@@ -68,6 +65,5 @@
 .image-overlay:hover .overlay-text {
   opacity: 1;
 }
-
 
 /* Your existing styles for bottom nav */
