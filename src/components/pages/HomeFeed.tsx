@@ -1,3 +1,6 @@
+import { useSuiClient } from '@mysten/dapp-kit'
+import { useEnokiFlow } from '@mysten/enoki/react'
+import { Transaction } from '@mysten/sui/transactions'
 import axios from 'axios'
 import { useEffect, useState } from 'react'
 import { useLocation } from 'wouter'
@@ -19,9 +22,11 @@ type Post = {
 }
 
 export function HomeFeed() {
-  const { session, sessionReady, signOut } = useSession()
+  const { session, refreshBalance, signOut } = useSession()
   const [, setLocation] = useLocation()
   const [posts, setPosts] = useState<Post[]>([])
+  const enokiFlow = useEnokiFlow()
+  const client = useSuiClient()
 
   const callPosts = async () => {
     const config = {
@@ -42,7 +47,30 @@ export function HomeFeed() {
     callPosts()
   }, [session?.address, setLocation])
 
-  const handleUpvote = (postId: number) => {
+  async function handleUpvote(postId: number) {
+    const post = posts.find((post) => post.id === postId)!
+
+    // Get the keypair for the current user.
+    const keypair = await enokiFlow.getKeypair({ network: 'testnet' })
+
+    const txb = new Transaction()
+    const [coin] = txb.splitCoins(txb.gas, [10000000 * 5])
+    txb.transferObjects([coin], post.address)
+
+    try {
+      // Sign and execute the transaction block, using the Enoki keypair
+      console.log('Sending sui...')
+      const res = await client.signAndExecuteTransaction({
+        signer: keypair,
+        transaction: txb,
+      })
+      console.log('Done', res)
+    } catch (err) {
+      console.log('Failed', err)
+    }
+
+    await axios.post(`${import.meta.env.VITE_BACKEND_URL}/upvote/${post.id}`)
+
     setPosts(
       posts.map((post) =>
         post.id === postId
@@ -54,6 +82,7 @@ export function HomeFeed() {
           : post,
       ),
     )
+    await refreshBalance()
   }
 
   async function handleCopyClick() {

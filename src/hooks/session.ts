@@ -36,6 +36,12 @@ export function useSession() {
     signOut() {
       enokiFlow.logout()
     },
+    async refreshBalance() {
+      await client.getBalance({ owner: session!.address }).then((balance) => {
+        // console.log('BALANCE', balance.totalBalance)
+        setBalance(BigInt(balance.totalBalance))
+      })
+    },
   }
   return sessionHandle
 }
