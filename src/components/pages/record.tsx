@@ -3,6 +3,14 @@ import React, { ChangeEvent, useCallback, useRef, useState } from "react";
 import Webcam from "react-webcam";
 import { useParams } from "wouter";
 
+
+import logo from '../../assets/images/logo.jpeg';
+import MainButton from './mainbutton'; // Ensure the path is correct
+
+import './record.css';
+import './upload.css';
+
+
 const test: React.FC = () => {
   const webcamRef = useRef<Webcam>(null);
   const mediaRecorderRef = useRef<MediaRecorder | null>(null);
@@ -91,21 +99,32 @@ const test: React.FC = () => {
 
   return (
     <div className="Container">
+       <header className="header">
+        <div className="logo-container">
+          <img src={logo} alt="Logo" className="logo" />
+          <div className="network-info">
+            <span className="network-name">Crystal Networks</span>
+          </div>
+        </div>
+        <div className="crystal-count">
+          <span>70 Crystals</span>
+        </div>
+      </header>
         <div className="title">{id=="p"?"Plant a Tree": "Do 20 Squats"}</div>
       {video === null ? (
         <>
           <Webcam
             audio={true}
-            height={500}
+            height={600}
             ref={webcamRef}
             screenshotFormat="image/jpeg"
-            width={500}
+            width={800}
             videoConstraints={videoConstraints}
           />
           {capturing ? (
-            <button onClick={handleStopCaptureClick}>Stop Capture</button>
+           <button className="capture-button" onClick={handleStopCaptureClick}>Stop Capture</button>
           ) : (
-            <button onClick={handleStartCaptureClick}>Start Capture</button>
+            <button className="capture-button" onClick={handleStartCaptureClick}>Start Capture</button>
           )}
           <div>
             <input type="file" accept="video/*" onChange={handleUpload} />
@@ -129,6 +148,13 @@ const test: React.FC = () => {
       )}
 
       <button className="submit" onClick={submitHandler} disabled={video==null}>Submit</button>
+      <nav className="bottom-nav">
+        <button className="nav-button home">Home</button>
+        <button className="nav-button search">Search</button>
+        <MainButton />
+        <button className="nav-button causes">Causes</button>
+        <button className="nav-button profile">Profile</button>
+      </nav>
     </div>
   );
 };
