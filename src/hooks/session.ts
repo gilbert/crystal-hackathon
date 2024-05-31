@@ -7,11 +7,13 @@ export function useSession() {
   const session = useStore(enokiFlow.$zkLoginSession)
   const sessionHandle = {
     sessionReady: session.initialized,
-    session: user.address &&
-      session.value && {
-        ...session.value,
-        address: user.address,
-      },
+    session:
+      user.address && session.value
+        ? {
+            ...session.value,
+            address: user.address,
+          }
+        : null,
     signOut() {
       enokiFlow.logout()
     },
