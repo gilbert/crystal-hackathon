@@ -47,6 +47,12 @@ export function HomeFeed() {
                 {session.address.slice(0, 6)}..{session.address.slice(-4)}
               </span>
             )}
+            {session && session.balance !== null && (
+              <span>
+                <br />
+                Balance: {bigintToStringWithDecimals(session.balance, 7)} CRYSTAL
+              </span>
+            )}
           </h2>
         </div>
       </div>
@@ -71,4 +77,28 @@ export function HomeFeed() {
       </div>
     </div>
   )
+}
+
+function bigintToStringWithDecimals(bigint: BigInt, decimalPlaces: number) {
+  // Convert the BigInt to a string
+  let bigintStr = bigint.toString()
+
+  // Ensure the bigintStr has at least decimalPlaces + 1 digits to handle decimal conversion properly
+  if (bigintStr.length <= decimalPlaces) {
+    bigintStr = bigintStr.padStart(decimalPlaces + 1, '0')
+  }
+
+  // Get the part before the decimal point
+  let integerPart = bigintStr.slice(0, -decimalPlaces)
+
+  // Get the fractional part (last decimalPlaces digits)
+  let fractionalPart = bigintStr.slice(-decimalPlaces)
+
+  // Handle the case where the integer part is empty (i.e., the number is less than 10^decimalPlaces)
+  if (integerPart === '') {
+    integerPart = '0'
+  }
+
+  // Combine the parts into the final string
+  return `${integerPart}.${fractionalPart}`
 }

@@ -1,19 +1,38 @@
+import { useSuiClient } from '@mysten/dapp-kit'
 import { useEnokiFlow } from '@mysten/enoki/react'
 import { useStore } from '@nanostores/react'
+import { useEffect, useState } from 'react'
 
 export function useSession() {
   const enokiFlow = useEnokiFlow()
-  const user = useStore(enokiFlow.$zkLoginState)
-  const session = useStore(enokiFlow.$zkLoginSession)
+  const userStore = useStore(enokiFlow.$zkLoginState)
+  const sessionStore = useStore(enokiFlow.$zkLoginSession)
+
+  const [balance, setBalance] = useState<BigInt | null>(null)
+
+  const session =
+    userStore.address && sessionStore.value
+      ? {
+          ...sessionStore.value,
+          address: userStore.address,
+          balance,
+        }
+      : null
+
+  const client = useSuiClient()
+
+  useEffect(() => {
+    if (session) {
+      client.getBalance({ owner: session.address }).then((balance) => {
+        // console.log('BALANCE', balance.totalBalance)
+        setBalance(BigInt(balance.totalBalance))
+      })
+    }
+  }, [session])
+
   const sessionHandle = {
-    sessionReady: session.initialized,
-    session:
-      user.address && session.value
-        ? {
-            ...session.value,
-            address: user.address,
-          }
-        : null,
+    sessionReady: sessionStore.initialized,
+    session,
     signOut() {
       enokiFlow.logout()
     },
