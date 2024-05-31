@@ -50,6 +50,10 @@ export function HomeFeed() {
   async function handleUpvote(postId: number) {
     const post = posts.find((post) => post.id === postId)!
 
+    if (post.address === session?.address) {
+      return
+    }
+
     // Get the keypair for the current user.
     const keypair = await enokiFlow.getKeypair({ network: 'testnet' })
 
