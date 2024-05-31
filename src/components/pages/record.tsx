@@ -3,9 +3,11 @@ import React, { ChangeEvent, useCallback, useRef, useState } from 'react'
 import Webcam from 'react-webcam'
 import { useLocation, useParams } from 'wouter'
 
+import { useSession } from '../../hooks/session'
 import MainButton from './mainbutton'
 
 const Record: React.FC = () => {
+  const { session } = useSession()
   const webcamRef = useRef<Webcam>(null)
   const mediaRecorderRef = useRef<MediaRecorder | null>(null)
   const [capturing, setCapturing] = useState<boolean>(false)
@@ -84,16 +86,12 @@ const Record: React.FC = () => {
     const blob = await response.blob()
 
     const formData = new FormData()
-    formData.append('id', counter)
     formData.append('file', blob, videoName)
-    formData.append('address', '0x1234567890')
+    formData.append('address', session!.address)
     formData.append('name', videoName)
 
-    await axios.post('http://localhost:3000/upload', formData, config)
-    console.log('submitted')
-    setCounter((counter) => {
-      return counter + 1
-    })
+    const result = await axios.post(`${import.meta.env.VITE_BACKEND_URL}/upload`, formData, config)
+    console.log('submitted', result)
     setLocation('/')
   }
 

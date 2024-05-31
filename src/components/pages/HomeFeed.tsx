@@ -34,15 +34,13 @@ export function HomeFeed() {
     setPosts(data)
   }
 
-  console.log(posts)
-
   useEffect(() => {
-    if (sessionReady && !session) {
+    if (!session) {
       setLocation('/login')
     }
 
     callPosts()
-  }, [sessionReady, setLocation])
+  }, [session?.address, setLocation])
 
   const handleUpvote = (postId: number) => {
     setPosts(

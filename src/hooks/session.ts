@@ -28,7 +28,7 @@ export function useSession() {
         setBalance(BigInt(balance.totalBalance))
       })
     }
-  }, [session])
+  }, [session?.address])
 
   const sessionHandle = {
     sessionReady: sessionStore.initialized,
