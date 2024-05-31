@@ -1,0 +1,69 @@
+.upload {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  width: 700px;
+  background-color: #ffffff;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.cause {
+  font-size: 36px; /* Adjusted font size to fit within the new width */
+  margin-top: 20px; /* Adjusted margins to fit within the new width */
+  margin-bottom: 20px; 
+  margin-right: 0; /* Centered text, so no margin-right */
+  font-weight: bold;
+  text-align: center;
+  color: black;
+  width: 100%;
+}
+
+.image-container {
+  display: flex;
+  flex-direction: column; /* Stack images vertically to fit within 700px */
+  align-items: center;
+  gap: 20px; /* Reduced gap to fit within the new width */
+  width: 100%;
+}
+
+.cause_image {
+  width: 90%; /* Adjusted width to fit within the new layout */
+  height: auto; /* Maintain aspect ratio */
+  max-width: 300px; /* Added max-width to constrain the image size */
+  border-radius: 10px;
+  cursor: pointer;
+  transition: transform 0.3s;
+  object-fit: cover;
+}
+
+.cause_image:hover {
+  transform: scale(1.1);
+}
+
+.image-overlay {
+  position: relative;
+  display: inline-block;
+  width: 100%; /* Ensure the overlay matches the image size */
+}
+
+.overlay-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: rgba(0, 0, 0, 0.5);
+  color: white;
+  font-size: 24px; /* Adjusted font size to fit within the new width */
+  padding: 20px; /* Adjusted padding to fit within the new width */
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.image-overlay:hover .overlay-text {
+  opacity: 1;
+}
+
+/* Your existing styles for bottom nav */

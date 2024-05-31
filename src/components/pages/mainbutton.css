@@ -1,0 +1,19 @@
+/* mainButton.css */
+
+.main-button {
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    height: 50px;
+    width: 50px;
+    font-size: 1em;
+    background-color: #007bff;
+    color: white;
+    /* Add any other styles as needed */
+  }
+  
+  .main-button:hover {
+    background-color: #272727; /* Change color on hover */
+    /* Add any other hover effects as needed */
+  }
+  

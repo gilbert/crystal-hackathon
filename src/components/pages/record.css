@@ -1,0 +1,63 @@
+
+  /* Capture button */
+  .capture-button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-right: 10px; /* Adjust margin as needed */
+  }
+  
+  .capture-button:hover {
+    background-color: #240303;
+  }
+  
+
+    /* Submit button */
+    .submit {
+        background-color: #3498db;
+        color: white;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        margin-top: 20px;
+      }
+      
+      .submit:hover {
+        background-color: #063554;
+      }
+
+        /* Download button */
+  .download-button {
+    background-color: #3498db;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 20px;
+  }
+  
+  .download-button:hover {
+    background-color: #063554;
+  }
+
+
+    /* Record again button */
+    .record-again-button {
+        background-color: #3498db;
+        color: white;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        margin-top: 20px;
+      }
+      
+      .record-again-button:hover {
+        background-color: #063554;
+      }
+      
