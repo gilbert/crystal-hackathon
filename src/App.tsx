@@ -7,8 +7,8 @@ import { Authn } from './components/pages/Authn.tsx'
 import { Debug } from './components/pages/Debug.tsx'
 import { HomeFeed } from './components/pages/HomeFeed.tsx'
 import { Upload } from './components/pages/upload.tsx'
-import test from './components/pages/record.tsx'
-import WebcamImage from './components/pages/test.tsx'
+import Record from './components/pages/record.tsx'
+// import WebcamImage from './components/pages/test.tsx'
 
 function App() {
   return (
@@ -17,7 +17,7 @@ function App() {
         <Route path="/" component={HomeFeed} />
         <Route path="/login" component={Authn} />
         <Route path="/upload" component={Upload} />
-        <Route path="/record/:id" component={test} />
+        <Route path="/record/:id" component={Record} />
         <Route path="/debug" component={Debug} />
       </Switch>
     </Providers>

@@ -1,24 +1,18 @@
 import axios from "axios";
 import React, { ChangeEvent, useCallback, useRef, useState } from "react";
 import Webcam from "react-webcam";
-import { useParams } from "wouter";
+import { useParams, useLocation } from "wouter";
 
-
-import logo from '../../assets/images/logo.jpeg';
-import MainButton from './mainbutton'; // Ensure the path is correct
-
-import './record.css';
-import './upload.css';
-
-
-const test: React.FC = () => {
+const Record: React.FC = () => {
   const webcamRef = useRef<Webcam>(null);
   const mediaRecorderRef = useRef<MediaRecorder | null>(null);
   const [capturing, setCapturing] = useState<boolean>(false);
   const [recordedChunks, setRecordedChunks] = useState<Blob[]>([]);
   const [video, setVideo] = useState<string | null>(null);
+  const [counter, setCounter] = useState(3);
   const [videoName, setVideoName] = useState<string>("captured_video");
   const params = useParams();
+  const [, setLocation] = useLocation()
   const id = params.id;
 
   const handleStartCaptureClick = useCallback(() => {
@@ -88,13 +82,17 @@ const test: React.FC = () => {
     const blob = await response.blob();
 
     const formData = new FormData();
+    formData.append("id", counter)
     formData.append("file", blob, videoName);
     formData.append("address", "0x1234567890");
     formData.append("name", videoName);
 
-    const data = await axios.post("http://localhost:3000/upload", formData, config)
-    console.log(data)
+    await axios.post("http://localhost:3000/upload", formData, config)
     console.log("submitted");
+    setCounter((counter) => {
+      return counter + 1;
+    })
+    setLocation("/")
   };
 
   return (
@@ -159,4 +157,4 @@ const test: React.FC = () => {
   );
 };
 
-export default test;
+export default Record;
