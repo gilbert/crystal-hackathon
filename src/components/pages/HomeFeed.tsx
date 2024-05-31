@@ -10,10 +10,18 @@ import MainButton from './mainbutton.tsx'
 
 // Import the MainButton component
 
+type Post = {
+  id: number
+  address: string
+  videoUrl: string
+  upvotes: number
+  upvoted?: boolean
+}
+
 export function HomeFeed() {
   const { session, sessionReady, signOut } = useSession()
   const [, setLocation] = useLocation()
-  const [posts, setPosts] = useState([])
+  const [posts, setPosts] = useState<Post[]>([])
 
   const callPosts = async () => {
     const config = {
@@ -36,7 +44,7 @@ export function HomeFeed() {
     callPosts()
   }, [sessionReady, setLocation])
 
-  const handleUpvote = (postId) => {
+  const handleUpvote = (postId: number) => {
     setPosts(
       posts.map((post) =>
         post.id === postId
@@ -113,7 +121,9 @@ export function HomeFeed() {
                 <div className="profile-info">
                   <img src={dummyImage} alt="Profile" className="profile-image" />
                   <div className="user-details">
-                    <span className="profile-name">{post.address}</span>
+                    <span className="profile-name">
+                      {post.address.slice(0, 6)}..{post.address.slice(-4)}
+                    </span>
                   </div>
                 </div>
                 <div className="post-image">

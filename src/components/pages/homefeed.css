@@ -258,7 +258,7 @@ body {
 }
 
 /* Media Queries for Responsive Design */
-@media (max-width: 768px) {
+@media (max-width: 448px) {
   .header {
     flex-direction: column;
     align-items: flex-start;
