@@ -1,0 +1,189 @@
+/* General styles */
+
+.body
+{
+    background-color: #f2f2f2; /* Add a background color */
+    font-family: 'Arial', sans-serif; /* Use a cool font */
+    color: #333; /* Change text color */
+    margin: 0; /* Remove default margin */
+    padding: 0; /* Remove default padding */
+}
+
+
+.home-feed {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+/* Header styles */
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.logo {
+  width: 50px;
+  height: 50px;
+}
+
+.small-profile-pic {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+.profile-info span {
+  font-weight: bold;
+}
+
+.crystal-count {
+  background-color: #ce6f6f;
+  padding: 5px 10px;
+  border-radius: 20px;
+}
+
+.crystal-count span {
+  font-weight: bold;
+}
+
+.main-button {
+  border-radius: 50%; /* Make it circular */
+  height: 50px; /* Increase height to make it stand out */
+  width: 50px; /* Set width to match height for perfect circle */
+  font-size: 1.5em; /* Adjust font size as needed */
+}
+
+/* Search bar styles */
+.search-bar input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-bottom: 20px;
+}
+
+/* Logo container */
+.logo-container {
+  display: flex;
+  align-items: center;
+}
+
+/* Network name */
+.network-name {
+  font-family: 'Arial Black', sans-serif; /* Use a cool font */
+  font-size: 24px; /* Adjust the font size as needed */
+  color: #000000; /* Change color to match your theme */
+  margin-left: 10px; /* Add some spacing between logo and text */
+}
+
+/* Post styles */
+.post {
+  background-color: #83a2a9;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 20px;
+  margin-bottom: 20px;
+}
+
+.profile-info {
+  display: flex;
+  align-items: center;
+}
+
+.profile-info img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+
+.user-details {
+  display: flex;
+  align-items: baseline; /* Align items on the baseline */
+}
+
+.profile-name {
+  font-weight: bold;
+  margin-right: 5px; /* Add space between name and title */
+}
+
+.title {
+  font-weight: normal; /* Set title font weight to normal */
+  margin-left: auto; /* Push the title to the rightmost end */
+}
+
+.post-image img {
+  width: 100%;
+  border-radius: 5px;
+  margin-bottom: 10px;
+}
+
+.post-content p {
+  margin-bottom: 10px;
+}
+
+.post-upvote {
+  display: flex;
+  align-items: center;
+}
+
+.upvote-button {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+
+.upvote-icon {
+  margin-left: 5px;
+}
+
+.upvoted .upvote-icon {
+  color: #4695ea; /* Change color when upvoted */
+}
+
+/* Bottom navigation styles */
+.bottom-nav {
+  background-color: #012347; /* Change navigation background color */
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  padding: 15px;
+}
+
+.nav-button {
+  background-color: transparent;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.nav-button:not(:last-child) {
+  margin-right: 10px;
+}
+
+.nav-button.home {
+  background-color: rgba(255, 255, 255, 0.1); /* Change home button background color */
+}
+
+/* Sign out button */
+.sign-out {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.sign-out button {
+  background-color: #e8cdcf;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+}
