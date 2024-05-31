@@ -190,7 +190,7 @@ export function HomeFeed() {
   )
 }
 
-function bigintToStringWithDecimals(bigint: BigInt, decimalPlaces: number, roundTo: number) {
+export function bigintToStringWithDecimals(bigint: BigInt, decimalPlaces: number, roundTo: number) {
   // Convert the BigInt to a string
   let bigintStr = bigint.toString()
 

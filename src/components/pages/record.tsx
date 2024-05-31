@@ -4,6 +4,7 @@ import Webcam from 'react-webcam'
 import { useLocation, useParams } from 'wouter'
 
 import { useSession } from '../../hooks/session'
+import { bigintToStringWithDecimals } from './HomeFeed'
 import MainButton from './mainbutton'
 
 const Record: React.FC = () => {
@@ -96,7 +97,7 @@ const Record: React.FC = () => {
   }
 
   return (
-    <div className="Container">
+    <div className="Container" style={{ paddingBottom: '12rem' }}>
       <header className="header">
         <div className="logo-container">
           <div className="network-info">
@@ -104,7 +105,39 @@ const Record: React.FC = () => {
           </div>
         </div>
         <div className="crystal-count">
-          <span>70 Crystals</span>
+          <div>
+            {session && (
+              <span>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  style={{
+                    height: '1rem',
+                    marginRight: '0.1rem',
+                    position: 'relative',
+                    top: '0.1rem',
+                  }}
+                >
+                  <path d="M19 7V4a1 1 0 0 0-1-1H5a2 2 0 0 0 0 4h15a1 1 0 0 1 1 1v4h-3a2 2 0 0 0 0 4h3a1 1 0 0 0 1-1v-2a1 1 0 0 0-1-1" />
+                  <path d="M3 5v14a2 2 0 0 0 2 2h15a1 1 0 0 0 1-1v-4" />
+                </svg>
+                {session.address.slice(0, 6)}..{session.address.slice(-4)}
+              </span>
+            )}
+          </div>
+
+          {session && session.balance !== null && (
+            <span style={{ color: 'white' }}>
+              {bigintToStringWithDecimals(session.balance, 7, 1)} CRYSTAL
+            </span>
+          )}
         </div>
       </header>
       <div className="title">{id == 'p' ? 'Plant a Tree' : 'Do 20 Squats'}</div>
@@ -112,21 +145,23 @@ const Record: React.FC = () => {
         <>
           <Webcam
             audio={true}
-            height={600}
+            height={320}
             ref={webcamRef}
             screenshotFormat="image/jpeg"
-            width={800}
+            width={320}
             videoConstraints={videoConstraints}
           />
-          {capturing ? (
-            <button className="capture-button" onClick={handleStopCaptureClick}>
-              Stop Capture
-            </button>
-          ) : (
-            <button className="capture-button" onClick={handleStartCaptureClick}>
-              Start Capture
-            </button>
-          )}
+          <div>
+            {capturing ? (
+              <button className="capture-button" onClick={handleStopCaptureClick}>
+                Stop Capture
+              </button>
+            ) : (
+              <button className="capture-button" onClick={handleStartCaptureClick}>
+                Start Capture
+              </button>
+            )}
+          </div>
           <div>
             <input type="file" accept="video/*" onChange={handleUpload} />
           </div>
@@ -153,9 +188,7 @@ const Record: React.FC = () => {
       </button>
       <nav className="bottom-nav">
         <button className="nav-button home">Home</button>
-        <button className="nav-button search">Search</button>
         <MainButton />
-        <button className="nav-button causes">Causes</button>
         <button className="nav-button profile">Profile</button>
       </nav>
     </div>

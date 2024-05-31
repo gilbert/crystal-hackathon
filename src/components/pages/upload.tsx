@@ -1,12 +1,13 @@
 // import React from 'react';
-import { Link } from 'wouter';
-import CleanCommunity from '../../assets/images/clean.jpeg';
-import PromoteFitness from '../../assets/images/fitness.jpeg';
-import plantImage from '../../assets/images/plant.jpeg';
+import { Link } from 'wouter'
 
-import logo from '../../assets/images/logo.jpeg';
-import MainButton from './mainbutton'; // Ensure the path is correct
-import './upload.css';
+import CleanCommunity from '../../assets/images/clean.jpeg'
+import PromoteFitness from '../../assets/images/fitness.jpeg'
+import logo from '../../assets/images/logo.jpeg'
+import plantImage from '../../assets/images/plant.jpeg'
+import MainButton from './mainbutton'
+// Ensure the path is correct
+import './upload.css'
 
 export function Upload() {
   return (
@@ -18,9 +19,7 @@ export function Upload() {
             <span className="network-name">Crystal Networks</span>
           </div>
         </div>
-        <div className="crystal-count">
-          <span>70 Crystals</span>
-        </div>
+        <div className="crystal-count"></div>
       </header>
 
       <h1 className="cause">Select a Cause</h1>
@@ -53,5 +52,5 @@ export function Upload() {
         <button className="nav-button profile">Profile</button>
       </nav>
     </div>
-  );
+  )
 }
